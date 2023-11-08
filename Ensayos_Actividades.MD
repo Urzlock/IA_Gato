@@ -15,3 +15,50 @@ Recapitulando lo comentado en la sección anterior, se nos requiere obtener un r
 Tomando en cuenta esto también es importante comprender las limitaciones de espacio que se presentan en el planteamiento del problema, las cuales se presentan en la forma de un tablero con dimensiones de 4 casillas de ancho por 5 casillas de alto. Tomando en cuenta que ambos grupos de alfiles estarán posicionados a los respectivos extremos, nos deja un área de movimientos disponibles al centro del tablero de 4 casillas de ancho por 3 de alto. A continuación, se presenta una representación de grafica del tablero el cual cuenta con una identificación única para cada una de sus casillas para que sea más sencillo poder visualizar el recorrido de cada una de las piezas y corroborar que se obtiene un resultado satisfactorio,
 
 ![Tablero](src/tablero.png)
+
+| Movimiento | Posición inicial | Posición final | Color  |
+|------------|-------------------|-----------------|--------|
+| 1          | XVIII             | XVII            | Blancas|
+| 2          | III               | VI              | Negras |
+| 3          | XVII              | XII             | Blancas|
+| 4          | VII               | XIII            | Negras |
+| 5          | XIX               | XVIII           | Blancas|
+| 6          | II                | VII             | Negras |
+| 7          | XVII              | XIII            | Blancas|
+| 8          | VI                | XVII            | Negras |
+| 9          | XII               | III             | Blancas|
+| 10         | XIII              | XVIII           | Negras |
+| 11         | XVIII             | XI              | Blancas|
+| 12         | VII               | XVI             | Negras |
+| 13         | XIII              | IX              | Blancas|
+| 14         | XVI               | XI              | Negras |
+| 15         | XI                | XIX             | Blancas|
+| 16         | XIV               | V               | Negras |
+| 17         | IX                | II              | Blancas|
+| 18         | XI                | X               | Negras |
+| 19         | XVIII             | IX              | Blancas|
+| 20         | I                 | X               | Negras |
+| 21         | III               | VII             | Blancas|
+| 22         | XVII              | XVI             | Negras |
+| 23         | IX                | XIII            | Blancas|
+| 24         | X                | VIII             | Negras |
+| 25         | XIX               | XVI             | Blancas|
+| 26         | VI                | I               | Negras |
+| 27         | XVI               | I               | Blancas|
+| 28         | I                 | XIX             | Negras |
+| 29         | VII               | II              | Blancas|
+| 30         | XVI               | XV              | Negras |
+| 31         | XIII              | VIII            | Blancas|
+| 32         | IX               | XVII            | Negras |
+| 33         | VI                | III             | Blancas|
+| 34         | XV               | XVIII           | Negras |
+| 35         | VIII              | VI              | Blancas|
+| 36         | XVII              | XIX             | Negras |
+
+
+##Conclusión
+
+El problema planteado, que consiste en el intercambio de posiciones entre alfiles blancos y negros en un tablero de ajedrez de dimensiones reducidas, ha sido resuelto de manera óptima en 36 movimientos. La solución se fundamenta en la comprensión del movimiento diagonal inherente a los alfiles y la consideración de las restricciones espaciales presentes en el tablero. Este ejercicio subraya la importancia no solo de la familiaridad con las reglas y propiedades específicas de las piezas de ajedrez, sino también de la capacidad estratégica y analítica necesaria para abordar problemas de índole compleja. Asimismo, se puede establecer una analogía con el concepto de introspección en inteligencia artificial, donde la comprensión profunda de los procesos internos se erige como un pilar fundamental para la toma de decisiones efectivas y transparentes. En este contexto, la resolución del problema ejemplifica cómo el conocimiento detallado de las reglas y restricciones puede conducir a soluciones eficientes y bien fundadas.
+
+---
+
