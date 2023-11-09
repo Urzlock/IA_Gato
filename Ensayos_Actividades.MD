@@ -72,3 +72,82 @@ Enfoque Recursivo
 En contraste, el enfoque recursivo se sumerge en la matriz de manera más profunda y reflexiva. Explora cada celda y se expande a través de sus vecinos del mismo valor. Esta aproximación reflexiva refleja la naturaleza introspectiva al buscar comprender los procesos mentales a un nivel más profundo. La recursividad facilita una comprensión más holística de la matriz, identificando y contando las islas de manera eficiente.
 Reflexiones sobre la Implementación Práctica
 Ambos enfoques, iterativo y recursivo, pueden ser implementados utilizando un lenguaje de programación. En el enfoque iterativo, se emplea un bucle para explorar la matriz celda por celda, mientras que, en el enfoque recursivo, una función se llama a sí misma para explorar los vecinos de una celda.
+
+##Solución Iterativa
+Una vez tomamos en cuenta todo lo anterior podemos proponer una solución usando el paradigma iterativo de la siguiente forma
+```python
+def contar_islas_iterativo(imagen):
+    if not imagen or not imagen[0]:
+        return 0
+    
+    filas = len(imagen)
+    columnas = len(imagen[0])
+    visitado = [[False] * columnas for _ in range(filas)]
+    contador_islas = 0
+
+    for i in range(filas):
+        for j in range(columnas):
+            if imagen[i][j] == 1 and not visitado[i][j]:
+                dfs_iterativo(imagen, i, j, visitado)
+                contador_islas += 1
+
+    return contador_islas
+
+def dfs_iterativo(imagen, x, y, visitado):
+    filas, columnas = len(imagen), len(imagen[0])
+    stack = [(x, y)]
+    
+    while stack:
+        i, j = stack.pop()
+        if 0 <= i < filas and 0 <= j < columnas and imagen[i][j] == 1 and not visitado[i][j]:
+            visitado[i][j] = True
+            stack.extend([(i+1, j), (i-1, j), (i, j+1), (i, j-1)])
+
+```
+##Solución Recursiva
+La función contar_elementos_iterativo toma una matriz como argumento y comprueba si está vacía. Si la matriz está vacía, la función devuelve 0. Luego, calcula el número de filas y columnas de la matriz y crea una matriz llamada visitado para realizar un seguimiento de los elementos ya visitados.
+La función interna explorar se define para explorar recursivamente una "isla" de elementos del mismo color. Toma las coordenadas (x, y) de un elemento, el valor color que se está explorando, y marca los elementos del mismo color como visitados.
+La sección principal del código utiliza dos bucles anidados para recorrer cada elemento de la matriz. Si un elemento no ha sido visitado, invoca la función explorar para marcar todos los elementos de la "isla" a la que pertenece. Incrementa el contador de islas por cada nueva "isla" encontrada.
+Finalmente, la función devuelve el número total de "islas" encontradas en la matriz. Un ejemplo de uso se proporciona con una matriz de ejemplo, y se imprime el resultado del conteo de islas utilizando la función contar_elementos_iterativo. Este código puede ser útil para casos en los que se desee identificar agrupaciones de elementos del mismo valor en una matriz bidimensional.
+De igual forma podemos determinar una solución utilizando la recursividad de la siguiente forma
+
+```python
+def contar_islas_recursivo(imagen):
+    if not imagen or not imagen[0]:
+        return 0
+    
+    filas = len(imagen)
+    columnas = len(imagen[0])
+    visitado = [[False] * columnas for _ in range(filas)]
+    contador_islas = 0
+
+    for i in range(filas):
+        for j in range(columnas):
+            if imagen[i][j] == 1 and not visitado[i][j]:
+                dfs_recursivo(imagen, i, j, visitado)
+                contador_islas += 1
+
+    return contador_islas
+
+def dfs_recursivo(imagen, x, y, visitado):
+    filas, columnas = len(imagen), len(imagen[0])
+    
+    if 0 <= x < filas and 0 <= y < columnas and imagen[x][y] == 1 and not visitado[x][y]:
+        visitado[x][y] = True
+        dfs_recursivo(imagen, x+1, y, visitado)
+        dfs_recursivo(imagen, x-1, y, visitado)
+        dfs_recursivo(imagen, x, y+1, visitado)
+        dfs_recursivo(imagen, x, y-1, visitado)
+```
+
+La función comienza verificando si la matriz de entrada está vacía. En caso afirmativo, devuelve 0, ya que no hay elementos para contar. Luego, se determinan las dimensiones de la matriz mediante la obtención de la cantidad de filas y columnas.
+A continuación, se inicializa una matriz llamada visitado, que se utiliza para realizar un seguimiento de los elementos que ya han sido visitados durante el proceso de exploración de las "islas". Esta matriz se crea con las mismas dimensiones que la matriz de entrada y se llena con valores booleanos, todos inicialmente establecidos en False.
+La función interna explorar se define para llevar a cabo la exploración recursiva de una "isla". Recibe las coordenadas (x, y) de un elemento, así como el valor color del elemento que se está explorando. La exploración se realiza verificando las coordenadas, el color del elemento y si ya ha sido visitado. Si se cumplen estas condiciones, el elemento se marca como visitado y se exploran recursivamente sus vecinos en las cuatro direcciones: arriba, abajo, izquierda y derecha.
+El proceso principal del código utiliza dos bucles anidados para recorrer cada elemento de la matriz. Si el elemento no ha sido visitado, se invoca la función explorar para marcar todos los elementos de la "isla" a la que pertenece. Además, se incrementa un contador llamado islas por cada nueva "isla" encontrada.
+Finalmente, la función devuelve el número total de "islas" encontradas en la matriz. El código incluye un ejemplo de uso con una matriz de ejemplo, donde se imprime el resultado del conteo de "islas" utilizando la función contar_elementos_recursivo.
+Este código es una implementación recursiva que busca identificar agrupaciones de elementos del mismo valor en una matriz bidimensional, proporcionando un enfoque alternativo al enfoque iterativo previamente discutido.
+
+##Conclusión
+En conclusión, exploramos la analogía entre la introspección y el desafío de contar elementos en una matriz, utilizando enfoques iterativos y recursivos. El enfoque iterativo se asemeja a un análisis paso a paso, mientras que el recursivo se sumerge reflexivamente. Ambos métodos, implementados en un lenguaje de programación, ofrecen soluciones efectivas. Esta reflexión destaca la versatilidad de estos enfoques, no solo en programación, sino también en nuestra capacidad para comprender la complejidad de la mente. La elección entre iteración y recursión depende del problema, proporcionando flexibilidad para abordar desafíos diversos.
+
+---
