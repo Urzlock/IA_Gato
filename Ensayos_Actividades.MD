@@ -151,3 +151,60 @@ Este código es una implementación recursiva que busca identificar agrupaciones
 En conclusión, exploramos la analogía entre la introspección y el desafío de contar elementos en una matriz, utilizando enfoques iterativos y recursivos. El enfoque iterativo se asemeja a un análisis paso a paso, mientras que el recursivo se sumerge reflexivamente. Ambos métodos, implementados en un lenguaje de programación, ofrecen soluciones efectivas. Esta reflexión destaca la versatilidad de estos enfoques, no solo en programación, sino también en nuestra capacidad para comprender la complejidad de la mente. La elección entre iteración y recursión depende del problema, proporcionando flexibilidad para abordar desafíos diversos.
 
 ---
+
+
+##Introducción
+La introspección, derivada del latín "introspicere", que significa "mirar hacia dentro", es una práctica antigua que permite a los humanos adquirir conocimientos sobre sus propios estados mentales. Este proceso implica observación y análisis interno, en el que el sujeto se sumerge en la interpretación y representación de sus propios procesos cognitivos y afectivos. En el contexto de la inteligencia artificial, esta introspección se convierte en un elemento clave para comprender cómo las máquinas abordan los problemas y desarrollan soluciones de manera similar a la mente humana.
+##Problema:
+Realizar un algoritmo que permita contar elementos que que estén compuestos del color rojo en la siguiente imagen:
+Basado en lo visto en el ensayo anterior, podemos reestructurar el código realizado previamente para poder reaprovecharlo para contar pixeles de una tonalidad RGB deseada (en este caso, roja). Esto mismo nos permite obtener como resultado el siguiente código:
+
+##Solución
+```python
+from PIL import Image
+
+def contar_pixeles_rojos(imagen):
+    if not imagen:
+        return 0
+    
+    ancho, alto = imagen.size
+    pixeles = imagen.load()
+    
+    visitado = [[False] * alto for _ in range(ancho)]
+    
+    def explorar(x, y, color):
+        contador = 0
+        if 0 <= x < ancho and 0 <= y < alto and pixeles[x, y][0] == color and not visitado[x][y]:
+            visitado[x][y] = True
+            contador += 1
+            for dx, dy in ((-1, 0), (1, 0), (0, -1), (0, 1)):
+                contador += explorar(x + dx, y + dy, color)
+        return contador
+    
+    grupos_pixeles_rojos = 0
+    for i in range(ancho):
+        for j in range(alto):
+            if not visitado[i][j]:
+                contador_actual = explorar(i, j, pixeles[i, j][0])
+                if contador_actual >= 4:
+                    grupos_pixeles_rojos += 1
+    
+    return grupos_pixeles_rojos
+
+
+imagen_ejemplo = Image.open("D:/test.jpg")  
+print("Número de grupos de 4 píxeles rojos o más:", contar_pixeles_rojos(imagen_ejemplo))
+
+```
+Este código en Python emplea la biblioteca PIL (Python Imaging Library) para realizar un análisis de imágenes, específicamente para determinar el número de grupos de píxeles rojos, cada uno compuesto por al menos cuatro píxeles adyacentes de color rojo. La función principal, denominada `contar_pixeles_rojos`, acepta una imagen como parámetro y devuelve el recuento de tales grupos presentes en la imagen suministrada
+En un primer paso, se realiza una comprobación para verificar la existencia de una imagen. En caso de que no se haya proporcionado una imagen, la función retorna 0. Posteriormente, se extraen las dimensiones de la imagen (ancho y alto), y se carga la información de píxeles en la variable `pixeles`.
+Se crea una matriz denominada `visitado` para llevar un registro de los píxeles que han sido visitados durante el proceso de exploración. Inicialmente, todos los elementos de esta matriz se establecen en `False`.
+A continuación, se define la función interna `explorar`. Esta función emplea un enfoque de búsqueda recursiva para explorar los píxeles adyacentes al píxel actual. Si un píxel cumple con ciertos criterios (se encuentra dentro de los límites de la imagen, es de color rojo y no ha sido visitado), se marca como visitado y se incrementa el contador. La exploración prosigue en las direcciones arriba, abajo, izquierda y derecha desde el píxel actual.
+Una vez definida la función de exploración, se inicializa la variable `grupos_pixeles_rojos` en 0. Luego, mediante un bucle anidado, se recorren todos los píxeles de la imagen. Si un píxel no ha sido visitado, se inicia la exploración desde ese píxel y se obtiene el número de píxeles rojos en el grupo actual. Si este número es igual o mayor a 4, se incrementa el contador de grupos de píxeles rojos.
+Finalmente, la función devuelve el total de grupos de píxeles rojos identificados en la imagen.
+En el ejemplo de uso al final del código, se carga una imagen denominada "test.jpg" (es necesario reemplazar la ruta con la ubicación de la imagen deseada) mediante la función `Image.open` de la biblioteca PIL. Posteriormente, se imprime el resultado de aplicar la función `contar_pixeles_rojos` a dicha imagen, representando el número de grupos de 4 píxeles rojos o más presentes en la misma.
+##Conclusión
+En conclusión, el código en Python utilizando la biblioteca PIL realiza un análisis de imágenes para determinar el número de grupos de píxeles rojos, donde cada grupo consta de al menos cuatro píxeles adyacentes de color rojo. La función principal, `contar_pixeles_rojos`, verifica la existencia de la imagen, extrae sus dimensiones y realiza un recorrido de píxeles para identificar y contar los grupos deseados. La exploración se lleva a cabo mediante una búsqueda recursiva, marcando los píxeles visitados y contando los grupos que cumplen con los criterios establecidos. El ejemplo de uso demuestra cómo aplicar la función a una imagen específica, proporcionando el número total de grupos de píxeles rojos identificados.
+ 
+
+---
