@@ -208,3 +208,31 @@ En conclusión, el código en Python utilizando la biblioteca PIL realiza un an�
  
 
 ---
+#6- Introducción a la Inteligencia Artificial: El pro-ceso de razonamiento según la lógica
+
+##Introducción
+En el contexto de la guerra judeo-romana, surge un dilema matemático y computacional conocido como el "Problema de Josephus". En este escenario, Josephus y otros 40 soldados se encuentran atrapados en una cueva, enfrentándose a la decisión de determinar el orden en que se suicidarán según un método específico.
+La dinámica del juego implica que los soldados se ubiquen en un círculo numerado del 1 al 41. Comenzando con el soldado en la posición 1, este elimina al siguiente soldado (posición 2), y así sucesivamente. Este patrón de eliminación se repite, eliminando a los soldados en las posiciones pares, hasta que solo queda un sobreviviente. Según las reglas del juego, este último soldado también debe suicidarse.
+La singularidad del problema radica en que este último sobreviviente ocupa una posición estratégica específica en el círculo, siendo Josephus quien, con perspicacia, elige conscientemente esa posición para garantizar que será el último en permanecer con vida y, por ende, el último en cumplir con las reglas del juego.
+Para poder llegar a determinar un modelo en cual basarnos para saber dónde es el lugar correcto para ubicarse, es necesario tomar en cuenta lo siguiente:
+El Problema de Josephus es un problema teórico que involucra a un grupo de personas numeradas de manera consecutiva alrededor de un círculo. La idea es que cada k-ésima persona es eliminada hasta que solo queda una. La tarea es determinar la posición en la que deberías colocarte para ser la última persona restante.
+
+La fórmula matemática para resolver el Problema de Josephus se basa en una secuencia recursiva. La notación J(n, k) se utiliza para representar la posición de la última persona en un grupo de n personas cuando se elimina cada k-ésima persona.
+
+1.	Cuando hay una sola persona (n = 1), esa persona será la última en pie (posición 1).
+2.	Para grupos más grandes (n > 1), piensa en el hecho de que después de eliminar la k-ésima persona, el problema se reduce a un grupo más pequeño de tamaño (n-1). Entonces, la posición final en este grupo más pequeño es J(n-1, k).
+3.	Sin embargo, hay que tener en cuenta que la eliminación ocurre cada k personas y el índice se reinicia en cada eliminación. Por lo tanto, necesitas ajustar la posición final del grupo más pequeño. Esto se logra sumando (k - 1) y tomando el módulo n.
+4.	Finalmente, el resultado se ajusta sumando 1 y tomando el módulo n para asegurarse de que esté dentro de los límites del círculo.
+
+ Por lo tanto, podemos determinar las siguientes soluciones para los casos posibles
+
+ ## si $ n = 1$ entonces $ f(n,k) = 1$
+ ## si $ n > 1$ entonces $ f(n,k) = ((f(n-1,k)+k-1)mod(n))+1$
+ 
+
+
+Si aplicamos esta ecuación en un caso con 10 personas y se elimina cada 3 personas, obtenemos que la posición con la que podra sobrevivir es la 4 siguiendo la siguiente secuencia:
+
+    3, 6, 9, 2, 7, 1, 8, 5, 10, 4
+
+---
