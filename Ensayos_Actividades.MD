@@ -236,3 +236,14 @@ Si aplicamos esta ecuación en un caso con 10 personas y se elimina cada 3 perso
     3, 6, 9, 2, 7, 1, 8, 5, 10, 4
 
 ---
+#7.- Introducción a la Inteligencia Artificial: El papelde la heurística
+##Introducción
+La heurística es un enfoque o método general que se utiliza para resolver problemas o tomar decisiones de manera rápida y eficiente, aunque no garantiza una solución óptima. Se basa en reglas generales, estrategias intuitivas o experiencias pasadas para abordar situaciones complejas, especialmente cuando la información es limitada o el tiempo es escaso.
+El papel de la heurística en la resolución de problemas es facilitar el proceso de toma de decisiones al proporcionar atajos mentales y enfoques simplificados. Estas reglas o estrategias heurísticas son reglas prácticas que ayudan a reducir la complejidad de un problema, permitiendo tomar decisiones más rápidas y eficientes. Sin embargo, estas soluciones pueden no ser la mejor opción o la más óptima en términos de resultados, ya que se basan en aproximaciones y simplificaciones.
+Algunos ejemplos comunes de heurísticas incluyen:
+
+1.	Heurística de representatividad: Hacer juicios basados en la similitud percibida con prototipos, lo que puede llevar a sesgos cognitivos.
+2.	Heurística de disponibilidad: Basar la toma de decisiones en la disponibilidad y accesibilidad de la información, lo que puede llevar a la sobrevaloración de información fácilmente recordada.
+3.	Heurística de anclaje y ajuste: Tomar decisiones basadas en un valor inicial (ancla) y ajustar desde ese punto, lo que puede influir en la estimación final.
+4.	Heurística de satisfacción: Elegir la primera solución que cumple con ciertos criterios mínimos en lugar de evaluar todas las posibles alternativas.
+5.	Heurística de búsqueda del mejor primero: Centrarse en las opciones que parecen ser las mejores en un momento dado, sin explorar exhaustivamente todas las posibilidades.
