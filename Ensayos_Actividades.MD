@@ -247,3 +247,112 @@ Algunos ejemplos comunes de heurísticas incluyen:
 3.	Heurística de anclaje y ajuste: Tomar decisiones basadas en un valor inicial (ancla) y ajustar desde ese punto, lo que puede influir en la estimación final.
 4.	Heurística de satisfacción: Elegir la primera solución que cumple con ciertos criterios mínimos en lugar de evaluar todas las posibles alternativas.
 5.	Heurística de búsqueda del mejor primero: Centrarse en las opciones que parecen ser las mejores en un momento dado, sin explorar exhaustivamente todas las posibilidades.
+Aunque las heurísticas pueden ser útiles y eficientes, también pueden dar lugar a errores sistemáticos o sesgos cognitivos. En ciertos casos, es importante equilibrar el uso de heurísticas con un análisis más exhaustivo y reflexivo para evitar decisiones subóptimas.
+
+```python
+import tkinter as tk 
+from tkinter import ttk
+from tkinter import messagebox
+
+tablero=[
+    ['#','#','#','#','#','#','#','#','#'],
+    [' ',' ',' ',' ',' ',' ','#',' ','#'],
+    ['#','#','#',' ','#','#','#',' ','#'],
+    ['#',' ',' ',' ','#',' ','#',' ','#'],
+    ['#',' ','#','#','#',' ','#',' ','#'],
+    ['#',' ',' ',' ',' ',' ',' ',' ','#'],
+    ['#',' ','#','#','#',' ','#',' ','#'],
+    ['X',' ','#',' ',' ',' ','#',' ','#'],
+    ['#','#','#','#','#','#','#','#','#']
+]
+
+
+ruta=[]
+passed=[]
+
+class Laberinto:
+    def __init__(self):
+        self.ventana1=tk.Tk()
+        self.ventana1.configure(background="#ffffff")
+        self.ventana1.title("Laberinto")
+        self.check=False
+        self.tablero()
+        self.boton1=ttk.Button(self.ventana1, text="Resolver", command=self.ruta)
+        self.boton1.grid(column=0, row=10, columnspan=5, padx=20, pady=10)
+        self.boton2=ttk.Button(self.ventana1, text="Volver a intentar", command=self.reconstruir)
+        self.boton2.grid(column=5, row=10, columnspan=5, padx=10, pady=10)
+        self.ventana1.mainloop()
+
+    def tablero(self):  
+        self.lista=[]   
+        listafila=[]     
+        self.altura=len(tablero)
+        self.ancho=len(tablero[0])
+        for fila in range(len(tablero)):
+            for columna in range(len(tablero[fila])):   
+                texto=tablero[fila][columna]
+                label=ttk.Label(self.ventana1, text=texto, background="white") 
+                label.grid(column=columna, row=fila, padx=20, pady=10) 
+                if(tablero[fila][columna]=='X'): 
+                    label.configure(background="green")
+                elif (tablero[fila][columna]=='#'): 
+                    label.configure(background="black")
+                listafila.append(label)
+            self.lista.append(listafila)   
+            listafila=[]    
+
+    def reconstruir(self):  
+        print("Intentando de nuevo...")
+        for fila in range(len(tablero)):
+            for columna in range(len(tablero[fila])): 
+                self.lista[fila][columna].configure(background="white")
+        self.tablero()
+
+    def ruta(self):
+        self.check=False
+        self.resolver(1,0)
+        if (self.check):
+            print("¡Ha llegado a su destino!")
+            print("Solución = ", end="")
+            print(ruta)
+            print()
+            tk.messagebox.showinfo('Laberinto','Ha llegado a su destino')
+        else:    
+            print("No se pudo resolver")                    
+            tk.messagebox.showinfo('Laberinto','No se pudo resolver')
+
+    def resolver(self, fil, col):
+        while(self.check==False):
+            if(fil<0 or col<0 or fil>=self.altura or col>=self.ancho):
+                pass
+            elif(self.lista[fil][col]['text']=='*' or self.lista[fil][col]['text']=='#'):
+                pass
+            elif(self.lista[fil][col]['text']=='X'):
+                self.check=True
+            else:
+                self.lista[fil][col].configure(text="*", background="yellow")
+                ruta.append([fil,col])
+                if(fil<self.altura-1 and self.lista[fil+1][col]['text']!='#' and self.lista[fil+1][col]['text']!='*' and ([fil+1, col] not in passed)):
+                    fil+=1
+                elif(col>0 and self.lista[fil][col-1]['text']!='#' and self.lista[fil][col-1]['text']!='*' and ([fil, col-1] not in passed)):
+                    col-=1
+                elif(fil>0 and self.lista[fil-1][col]['text']!='#' and self.lista[fil-1][col]['text']!='*' and ([fil-1, col] not in passed)):
+                    fil-=1
+                elif(col<self.ancho and self.lista[fil][col+1]['text']!='#' and self.lista[fil][col+1]['text']!='*' and ([fil, col+1] not in passed)):
+                    col+=1
+                else:
+                    passed.append([fil,col])
+                    ruta.remove([fil,col])
+                    self.lista[fil][col].configure(text=" ", background="#ffffff")
+                    fil=ruta[-1][0]
+                    col=ruta[-1][1]
+                    ruta.remove([fil,col])
+                    self.lista[fil][col].configure(text=" ", background="#ffffff") 
+            if(len(ruta)==0):
+                print("No hay solucion")
+                break
+            if(self.check==True):
+                print("Se ha completado")
+
+Laberinto1=Laberinto()
+```
