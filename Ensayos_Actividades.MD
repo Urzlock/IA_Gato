@@ -356,3 +356,14 @@ class Laberinto:
 
 Laberinto1=Laberinto()
 ```
+
+El código anterior utiliza la biblioteca `tkinter` para crear una interfaz gráfica de usuario que representa un laberinto y, posteriormente, resuelve ese laberinto mediante un algoritmo de búsqueda recursiva. El programa utiliza etiquetas (`Label`) de `tkinter` para construir visualmente la estructura del laberinto y ofrece la funcionalidad de resolverlo haciendo clic en un botón.
+La funcionalidad principal está encapsulada en una clase llamada `Laberinto`. Aquí, el método `__init__` se encarga de la configuración inicial de la ventana principal y la generación del laberinto. Además, se crea un botón que, cuando se presiona, activa la resolución del laberinto mediante el método `analizar`. La ventana principal se mantiene en ejecución con `self.ventana1.mainloop()`.
+El método `generar_laberinto` se encarga de construir la representación gráfica del laberinto en la interfaz. Utiliza bucles anidados para crear una cuadrícula de etiquetas (`Label`) que representan las celdas del laberinto. La disposición de las celdas se determina mediante la llamada a la función `llenar_aleatorio`, que devuelve valores aleatorios (0 o 1) para representar caminos libres o paredes.
+
+La función `analizar` se activa cuando el usuario presiona el botón "Resolver". Esta función establece una bandera (`self.check`) en `False` y luego inicia el proceso de resolución del laberinto llamando al método `resolver` con la posición inicial (0,0). Si el laberinto se resuelve, se imprime "resuelto"; de lo contrario, se muestra un mensaje indicando que no se puede resolver mediante un cuadro de diálogo emergente.
+El método `resolver` implementa un algoritmo de búsqueda recursiva para encontrar la salida del laberinto. Marca las celdas visitadas con un punto y cambia el fondo a verde. La búsqueda se realiza en las direcciones derecha, abajo, arriba e izquierda. La variable `self.check` se utiliza para determinar si se ha encontrado la salida del laberinto.
+Finalmente, se crea una instancia de la clase `Laberinto` para iniciar la ejecución del programa. Esto muestra la interfaz gráfica del laberinto y permite al usuario intentar resolverlo haciendo clic en el botón "Resolver".
+Este código proporciona un ejemplo básico de cómo usar `tkinter` para crear una interfaz gráfica simple y cómo implementar un algoritmo recursivo para resolver un laberinto.
+
+---
