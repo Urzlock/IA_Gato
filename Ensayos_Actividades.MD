@@ -367,3 +367,41 @@ Finalmente, se crea una instancia de la clase `Laberinto` para iniciar la ejecuc
 Este código proporciona un ejemplo básico de cómo usar `tkinter` para crear una interfaz gráfica simple y cómo implementar un algoritmo recursivo para resolver un laberinto.
 
 ---
+#
+##Problema de las ranas:
+
+**Espacio de Estados:**
+- Lado izquierdo del río: GGG_BBB (donde G representa una rana verde, B representa una rana marrón, y _ representa una piedra vacía).
+- Lado derecho del río:  (inicialmente vacío).
+
+**Acciones:**
+- Mover una rana verde a la derecha.
+- Mover dos ranas verdes a la derecha.
+- Mover una rana marrón a la izquierda.
+- Mover dos ranas marrones a la izquierda.
+- Mover una rana verde y una rana marrón en direcciones opuestas.
+
+**Restricciones:**
+- No se puede tener más de una rana en una piedra.
+- No se puede saltar sobre una rana en la misma piedra.
+- Las ranas solo pueden moverse a piedras vacías o saltar sobre otra rana a una piedra vacía.
+
+### Problema de los misioneros y caníbales:
+
+**Espacio de Estados:**
+- Lado izquierdo del río: MMM_CCC (donde M representa un misionero, C representa un caníbal, y _ representa una orilla vacía).
+- Lado derecho del río: (inicialmente vacío).
+
+**Acciones:**
+- Mover un misionero a la derecha.
+- Mover un caníbal a la derecha.
+- Mover dos misioneros a la derecha.
+- Mover dos caníbales a la derecha.
+- Mover un misionero y un caníbal en direcciones opuestas.
+
+**Restricciones:**
+- No puede haber más caníbales que misioneros en ningún lado del río.
+- Si en algún lado del río hay misioneros y caníbales sin misioneros, los caníbales se los comerán.
+- La capacidad del bote es de máximo dos personas.
+
+En ambos problemas, el espacio de estados incluirá todas las configuraciones posibles de las entidades (ranas, misioneros, caníbales) en ambos lados del río, y las acciones posibles para cambiar de un estado a otro. La resolución implica encontrar una secuencia de acciones que lleven del estado inicial al estado objetivo, respetando las restricciones específicas de cada problema.
